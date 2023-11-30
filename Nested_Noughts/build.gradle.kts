@@ -1,5 +1,8 @@
 plugins {
+    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.androidApplication)
+
+    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.kotlinAndroid)
 }
 
@@ -39,11 +42,14 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(projects.shared)
     implementation(libs.compose.ui)
+    implementation(libs.runtime.livedata)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     implementation(libs.androidx.activity.compose)
     implementation(libs.play.services.mlkit.text.recognition.common)
     debugImplementation(libs.compose.ui.tooling)
+
 }

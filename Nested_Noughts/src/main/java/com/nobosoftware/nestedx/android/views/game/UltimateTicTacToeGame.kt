@@ -1,4 +1,4 @@
-package com.nobosoftware.nestedx.android.views
+package com.nobosoftware.nestedx.android.views.game
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -15,54 +15,51 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.nobosoftware.nestedx.android.controllers.TicTacToeViewModel
 import com.nobosoftware.nestedx.android.models.BigGrid
 import com.nobosoftware.nestedx.android.models.Player
 
 @Composable
-fun UltimateTicTacToeGame() {
-    val bigGrid = remember { BigGrid() }
-    var currentPlayer by remember { mutableStateOf(Player.X) }
-    var activeGridIndex by remember { mutableIntStateOf(0) } // Start with the first grid
+fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel) {
+    val bigGrid by viewModel.bigGrid.observeAsState(initial = BigGrid())
+    val currentPlayer by viewModel.currentPlayer.observeAsState(initial = Player.X)
+    val activeGridIndex by viewModel.activeGridIndex.observeAsState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(bottom = 50.dp), // Reserve space for the turn indicator
+            .padding(bottom = 50.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // The large grid (overall game state) is now smaller
-        LargeGridComposable(
-            activeGridIndex = activeGridIndex,
-            modifier = Modifier
-                .padding(16.dp) // Control the size here
-                .heightIn(min = 64.dp, max = 128.dp) // Set a fixed height for a smaller large grid
-        )
+        // LargeGridComposable
+        activeGridIndex?.let {
+            LargeGridComposable(
+                activeGridIndex = it,
+                modifier = Modifier
+                    .padding(16.dp)
+                    .heightIn(min = 64.dp, max = 128.dp)
+            )
+        }
 
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(16.dp)) // Add some space between the large and small grids
-
+        // SmallGridComposable
         SmallGridComposable(
-            smallGrid = bigGrid.smallGrids[activeGridIndex],
+            smallGrid = bigGrid.smallGrids[activeGridIndex!!],
             onCellClicked = { cellIndex ->
-                if (bigGrid.smallGrids[activeGridIndex].cells[cellIndex] == Player.None) {
-                    bigGrid.smallGrids[activeGridIndex].cells[cellIndex] = currentPlayer
-                    currentPlayer = if (currentPlayer == Player.X) Player.O else Player.X
-                    activeGridIndex = cellIndex // Update the active grid index
-                }
+                viewModel.makeMove(activeGridIndex!!, cellIndex)
             },
             modifier = Modifier
-                .weight(1f) // This grid takes most of the space
-                .padding(16.dp) // Adjust padding as needed
-        ) // Give weight to the SmallGridComposable so it expands
-        // Player's turn text with better visibility
+                .weight(1f)
+                .padding(16.dp)
+        )
+
+        // Player's turn text
         Box(
             modifier = Modifier
                 .fillMaxWidth()

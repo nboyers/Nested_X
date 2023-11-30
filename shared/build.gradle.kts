@@ -1,5 +1,8 @@
 plugins {
+    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.kotlinMultiplatform)
+
+    @Suppress("DSL_SCOPE_VIOLATION")
     alias(libs.plugins.androidLibrary)
 }
 
@@ -38,5 +41,10 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 28
+    }
+    buildToolsVersion = "34.0.0"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
