@@ -9,9 +9,7 @@ data class BigGrid(
 
         other as BigGrid
 
-        if (!smallGrids.contentEquals(other.smallGrids)) return false
-
-        return true
+        return smallGrids.contentEquals(other.smallGrids)
     }
 
     override fun hashCode(): Int {

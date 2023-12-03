@@ -1,152 +1,198 @@
-package com.nobosoftware.nestedx.android.controllers
+  package com.nobosoftware.nestedx.android.controllers
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nobosoftware.nestedx.android.models.BigGrid
 import com.nobosoftware.nestedx.android.models.GameMode
+import com.nobosoftware.nestedx.android.models.GridState
 import com.nobosoftware.nestedx.android.models.Player
 import com.nobosoftware.nestedx.android.models.SmallGrid
 
-class TicTacToeViewModel : ViewModel() {
-    private val _gameMode = MutableLiveData(GameMode.None)
-    val gameMode: LiveData<GameMode> = _gameMode
+  class TicTacToeViewModel : ViewModel() {
+      private val _gameMode = MutableLiveData(GameMode.None)
+      val gameMode: LiveData<GameMode> = _gameMode
 
-    private val _bigGrid = MutableLiveData(BigGrid())
-    val bigGrid: LiveData<BigGrid> = _bigGrid
+      private val _bigGrid = MutableLiveData(BigGrid())
+      val bigGrid: LiveData<BigGrid> = _bigGrid
 
-    private val _activeGridIndex = MutableLiveData(0) // Assuming game starts with the first grid
-    val activeGridIndex: LiveData<Int> = _activeGridIndex
+      private val _activeGridIndex = MutableLiveData(4)
+      val activeGridIndex: LiveData<Int> = _activeGridIndex
 
-    private val _currentPlayer = MutableLiveData(Player.X)
-    val currentPlayer: LiveData<Player> = _currentPlayer
+      private val _currentPlayer = MutableLiveData(Player.X)
+      val currentPlayer: LiveData<Player> = _currentPlayer
 
-    fun setGameMode(mode: GameMode) {
-        _gameMode.value = mode
-        resetGame()
-    }
+      private val _gameOverState = MutableLiveData(GridState.ACTIVE)
 
-    private fun resetGame() {
-        _bigGrid.postValue(BigGrid())
-        _currentPlayer.postValue(Player.X)
-        // Reset other game state as necessary
-    }
+      private val _gameOverMessage = MutableLiveData<String?>()
+      val gameOverMessage: LiveData<String?> = _gameOverMessage
 
 
-    // Add a function to update activeGridIndex as needed
-    fun setActiveGridIndex(index: Int) {
-        _activeGridIndex.value = index
-    }
-    fun makeMove(gridIndex: Int, cellIndex: Int) {
-        val grid = _bigGrid.value ?: return
-        if (grid.smallGrids[gridIndex].cells[cellIndex] != Player.None) {
-            // Cell is already occupied, ignore the move
-            return
-        }
+      fun setGameMode(mode: GameMode) {
+          _gameMode.value = mode
+          resetGame()
+      }
 
-        // Make the move
-        val player = _currentPlayer.value ?: return
-        grid.smallGrids[gridIndex].cells[cellIndex] = player
+      private fun resetGame() {
+          _bigGrid.postValue(BigGrid())
+          _currentPlayer.postValue(Player.X)
+          _activeGridIndex.postValue(4) // Reset to start from the middle grid
+          _gameOverState.postValue(GridState.ACTIVE)
+      }
 
-        // Check if the move leads to a win in the small grid
-        if (checkWin(grid.smallGrids[gridIndex], player)) {
-            grid.smallGrids[gridIndex].winner = player
-            // Update the large grid state to reflect the small grid win
-            // For example, you could update a corresponding cell in the large grid to indicate the winner
-        } else if (isDraw(grid.smallGrids[gridIndex])) {
-            // Handle draw condition for the small grid
-            // Update the large grid state to reflect the draw
-        }
+      fun makeMove(gridIndex: Int, cellIndex: Int) {
+          val grid = _bigGrid.value ?: return
 
-        // Check if the move leads to a win in the large grid
-        if (checkWin(grid, player)) {
-            // Handle the overall win condition
-            // Game over logic
-            resetGame()
+          // Check if the selected small grid is already won or is a draw
+          if (grid.smallGrids[gridIndex].winner != null || isDraw(grid.smallGrids[gridIndex])) {
+              // If the grid is won or draw, ignore the move and do not switch grids
+              return
+          }
 
-        } else if (!gameWon(grid) && isDraw(grid)) {
-            // Handle draw condition for the large grid
-            // Game over logic for draw
-        } else {
-            // Switch the current player and set the next active grid
-            _currentPlayer.value = if (player == Player.X) Player.O else Player.X
-            setActiveGridIndexBasedOnLastMove(cellIndex, grid)
-        }
+          if (grid.smallGrids[gridIndex].cells[cellIndex] != Player.None) {
+              // Cell is already occupied, ignore the move
+              return
+          }
 
-        // Update the LiveData
-        _bigGrid.value = grid
-    }
+          // Make the move
+          val player = _currentPlayer.value ?: return
+          grid.smallGrids[gridIndex].cells[cellIndex] = player
 
+          // Check if the move leads to a win or tie in the small grid
+          if (checkWin(grid.smallGrids[gridIndex], player)) {
+              grid.smallGrids[gridIndex].winner = player
+          } else if (isDraw(grid.smallGrids[gridIndex])) {
+              grid.smallGrids[gridIndex].isTie = true
+          }
 
-    private fun setActiveGridIndexBasedOnLastMove(cellIndex: Int, grid: BigGrid) {
-        // Set the next active grid based on the cell index of the last move
-        // If the next grid is already complete (won or draw), allow free choice
-        if (grid.smallGrids[cellIndex].winner == null && !isDraw(grid.smallGrids[cellIndex])) {
-            _activeGridIndex.value = cellIndex
-        } else {
-            // Free choice, you might want to handle this differently depending on your game rules
-            _activeGridIndex.value = findNextAvailableGrid(grid)
-        }
-    }
+          // Determine next active grid index based on the last move
+          val nextGridIndex = if (isGridComplete(grid.smallGrids[cellIndex])) {
+              findNextAvailableGrid(grid)
+          } else {
+              cellIndex
+          }
 
-
-    private fun findNextAvailableGrid(grid: BigGrid): Int {
-        // Find the index of the next available grid that is not won or a draw
-        // Return -1 or any default index if all grids are complete
-        grid.smallGrids.indexOfFirst { it.winner == null && !isDraw(it) }.let {
-            return if (it == -1) 0 else it // or handle all grids complete scenario
-        }
-    }
+          // If the next grid is complete or not playable, find the closest available grid
+          val finalNextGridIndex = if (isGridComplete(grid.smallGrids[nextGridIndex])) {
+              findClosestAvailableGrid(grid, nextGridIndex)
+          } else {
+              nextGridIndex
+          }
+          // Check for draw or win on the big grid
+          when {
+              gameWon(grid) -> {
+                  _gameOverState.value = GridState.WIN
+                  _gameOverMessage.value = "Player ${player.name} wins! Tap to return to the main menu."
+              }
+              isDraw(grid) -> {
+                  _gameOverState.value = GridState.DRAW
+                  _gameOverMessage.value = "It's a draw! Tap to return to the main menu."
+              }
+          }
 
 
-    /**
-     *
-     */
-    private fun checkWin(grid: BigGrid, player: Player): Boolean {
-        return (0..2).any { i ->
-            // Check rows and columns for a win
-            (grid.smallGrids[i * 3].winner == player && grid.smallGrids[i * 3 + 1].winner == player && grid.smallGrids[i * 3 + 2].winner == player) ||
-                    (grid.smallGrids[i].winner == player && grid.smallGrids[i + 3].winner == player && grid.smallGrids[i + 6].winner == player)
-        } ||
-                // Check diagonals for a win
-                (grid.smallGrids[0].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[8].winner == player) ||
-                (grid.smallGrids[2].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[6].winner == player)
-    }
-    private fun checkWin(grid: SmallGrid, player: Player): Boolean {
-        val cells = grid.cells
-        return (0..2).any { i ->
-            // Check rows and columns
-            (cells[i * 3] == player && cells[i * 3 + 1] == player && cells[i * 3 + 2] == player) ||
-                    (cells[i] == player && cells[i + 3] == player && cells[i + 6] == player)
-        } ||
-                // Check diagonals
-                (cells[0] == player && cells[4] == player && cells[8] == player) ||
-                (cells[2] == player && cells[4] == player && cells[6] == player)
-    }
-    private fun isDraw(grid: BigGrid): Boolean {
-        return grid.smallGrids.all { it.isDraw || it.isWon } && !checkWin(grid, Player.X) && !checkWin(grid, Player.O)
-    }
-    private fun isDraw(smallGrid: SmallGrid): Boolean {
-        // Check if all cells are filled and there is no winner
-        return smallGrid.cells.none { it == Player.None } && smallGrid.winner == null
-    }
-    private fun gameWon(grid: BigGrid): Boolean {
-        val player = _currentPlayer.value ?: return false
+          _activeGridIndex.value = finalNextGridIndex
 
-        // Check rows and columns for a win in the large grid
-        if ((0..2).any { i ->
-                (grid.smallGrids[i * 3].winner == player && grid.smallGrids[i * 3 + 1].winner == player && grid.smallGrids[i * 3 + 2].winner == player) ||
-                        (grid.smallGrids[i].winner == player && grid.smallGrids[i + 3].winner == player && grid.smallGrids[i + 6].winner == player)
-            }) {
-            return true
-        }
+          // Switch player
+          _currentPlayer.value = if (player == Player.X) Player.O else Player.X
 
-        // Check diagonals for a win in the large grid
-        if ((grid.smallGrids[0].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[8].winner == player) ||
-            (grid.smallGrids[2].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[6].winner == player)) {
-            return true
-        }
+          // Update the LiveData
+          _bigGrid.value = grid
+      }
 
-        return false
-    }
-}
+      private fun isGridComplete(smallGrid: SmallGrid): Boolean {
+          return smallGrid.winner != null || isDraw(smallGrid)
+      }
+
+      private fun setActiveGridIndexBasedOnLastMove(cellIndex: Int, grid: BigGrid) {
+          if (grid.smallGrids[cellIndex].winner == null && !isDraw(grid.smallGrids[cellIndex])) {
+              _activeGridIndex.value = cellIndex
+          } else {
+              val nextAvailableGridIndex = findNextAvailableGrid(grid)
+              if (nextAvailableGridIndex == -1) {
+                  val winState = if (gameWon(grid)) GridState.WIN else GridState.DRAW
+                  _gameOverState.value = winState
+
+                  // Set the appropriate game over message
+                  _gameOverMessage.value = when (winState) {
+                      GridState.WIN -> "Player ${_currentPlayer.value} wins! Tap to return to the main menu."
+                      GridState.DRAW -> "It's a draw! Tap to return to the main menu."
+                      else -> "" // Or handle other states if necessary
+                  }
+              } else {
+                  _activeGridIndex.value = nextAvailableGridIndex
+              }
+          }
+      }
+
+      private fun findClosestAvailableGrid(grid: BigGrid, startIndex: Int): Int {
+          // Start searching from the next index, wrap around to the beginning if necessary
+          val indices = (startIndex + 1 until grid.smallGrids.size) + (0 until startIndex)
+          for (index in indices) {
+              if (!isGridComplete(grid.smallGrids[index])) {
+                  return index
+              }
+          }
+          return -1 // If no available grid is found, return -1
+      }
+
+      private fun findNextAvailableGrid(grid: BigGrid): Int {
+          return grid.smallGrids.indexOfFirst { it.winner == null && !isDraw(it) }.let {
+              if (it == -1) {
+                  // If all grids are complete, return -1
+                  if (grid.smallGrids.all { sg -> sg.winner != null || isDraw(sg) }) {
+                      -1
+                  } else {
+                      // If not all grids are complete, return the index of the first grid
+                      0
+                  }
+              } else {
+                  // Return the index of the next available grid
+                  it
+              }
+          }
+      }
+
+
+      private fun checkWin(grid: BigGrid, player: Player): Boolean {
+          return (0..2).any { i ->
+              (grid.smallGrids[i * 3].winner == player && grid.smallGrids[i * 3 + 1].winner == player && grid.smallGrids[i * 3 + 2].winner == player) ||
+                      (grid.smallGrids[i].winner == player && grid.smallGrids[i + 3].winner == player && grid.smallGrids[i + 6].winner == player)
+          } ||
+                  (grid.smallGrids[0].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[8].winner == player) ||
+                  (grid.smallGrids[2].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[6].winner == player)
+      }
+
+      private fun checkWin(grid: SmallGrid, player: Player): Boolean {
+          val cells = grid.cells
+          return (0..2).any { i ->
+              (cells[i * 3] == player && cells[i * 3 + 1] == player && cells[i * 3 + 2] == player) ||
+                      (cells[i] == player && cells[i + 3] == player && cells[i + 6] == player)
+          } ||
+                  (cells[0] == player && cells[4] == player && cells[8] == player) ||
+                  (cells[2] == player && cells[4] == player && cells[6] == player)
+      }
+
+      private fun isDraw(grid: BigGrid): Boolean {
+          return grid.smallGrids.all { it.isTie || it.isWon } && !checkWin(grid, Player.X) && !checkWin(grid, Player.O)
+      }
+
+      private fun isDraw(smallGrid: SmallGrid): Boolean {
+          return smallGrid.cells.none { it == Player.None } && smallGrid.winner == null
+      }
+
+      private fun gameWon(grid: BigGrid): Boolean {
+          val player = _currentPlayer.value ?: return false
+          return (0..2).any { i ->
+              (grid.smallGrids[i * 3].winner == player && grid.smallGrids[i * 3 + 1].winner == player && grid.smallGrids[i * 3 + 2].winner == player) ||
+                      (grid.smallGrids[i].winner == player && grid.smallGrids[i + 3].winner == player && grid.smallGrids[i + 6].winner == player)
+          } ||
+                  (grid.smallGrids[0].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[8].winner == player) ||
+                  (grid.smallGrids[2].winner == player && grid.smallGrids[4].winner == player && grid.smallGrids[6].winner == player)
+      }
+
+      fun clearGameOverMessage() {
+          _gameOverMessage.value = null
+      }
+
+  }

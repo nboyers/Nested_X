@@ -34,7 +34,6 @@ fun MainMenu(onGameModeSelected: (GameMode) -> Unit) {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Human vs AI:")
 
         Button(
             onClick = { onGameModeSelected(GameMode.EasyAI) },

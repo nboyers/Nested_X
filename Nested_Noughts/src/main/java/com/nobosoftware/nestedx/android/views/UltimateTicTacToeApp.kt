@@ -3,13 +3,9 @@ package com.nobosoftware.nestedx.android.views
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
 import com.nobosoftware.nestedx.android.controllers.TicTacToeViewModel
 import com.nobosoftware.nestedx.android.models.GameMode
 import com.nobosoftware.nestedx.android.views.game.UltimateTicTacToeGame
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 
@@ -22,8 +18,14 @@ fun UltimateTicTacToeApp() {
 
     when (gameMode) {
         GameMode.None -> MainMenu(onGameModeSelected = viewModel::setGameMode)
-        GameMode.HumanVsHuman -> UltimateTicTacToeGame(viewModel)
-        GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI, GameMode.ImpossibleAI -> UltimateTicTacToeGameWithAI(viewModel, difficulty = gameMode)
+        GameMode.HumanVsHuman -> UltimateTicTacToeGame(viewModel) {
+            viewModel.setGameMode(GameMode.None) // Navigate back to the main menu
+        }
+        GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI, GameMode.ImpossibleAI -> UltimateTicTacToeGameWithAI(
+            viewModel = viewModel,
+            difficulty = gameMode,
+            onNavigateToMainMenu = { viewModel.setGameMode(GameMode.None) }
+        )
     }
 }
 
@@ -31,6 +33,14 @@ fun UltimateTicTacToeApp() {
 
 
 @Composable
-fun UltimateTicTacToeGameWithAI(viewModel: TicTacToeViewModel, difficulty: Any) {
+fun UltimateTicTacToeGameWithAI(
+    viewModel: TicTacToeViewModel,
+    difficulty: GameMode,
+    onNavigateToMainMenu: () -> Unit
+) {
+    // Game UI logic goes here
 
+    // Observe the gameOverMessage from viewModel and show a dialog or a message
+    // When acknowledged, call onNavigateToMainMenu
 }
+
