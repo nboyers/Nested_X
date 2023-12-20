@@ -85,7 +85,7 @@ class TicTacToeViewModel : ViewModel() {
         val aiMove = when (gameMode) {
             GameMode.EasyAI -> calculateEasyAiMove(grid, activeIndex)
             // Uncomment and implement the following lines for other difficulties
-            // GameMode.MediumAI -> calculateMediumAiMove(grid, activeIndex)
+             GameMode.MediumAI -> calculateMediumAiMove(grid, activeIndex)
             // GameMode.HardAI -> calculateHardAiMove(grid, activeIndex)
             // GameMode.ImpossibleAI -> calculateImpossibleAiMove(grid, activeIndex)
             else -> return // If it's not an AI mode, return without making a move
@@ -99,6 +99,42 @@ class TicTacToeViewModel : ViewModel() {
             }
             switchPlayer()
         }
+    }
+
+    private fun calculateMediumAiMove(grid: BigGrid, activeIndex: Int): Pair<Int, Int>? {
+        val smallGrid = grid.smallGrids[activeIndex]
+
+        // If the small grid is complete, return null
+        if (isGridComplete(smallGrid)) return null
+
+        // Strategy 1: Take the middle spot if available
+        val middleIndex = 4
+        if (smallGrid.cells[middleIndex] == Player.None) {
+            return Pair(activeIndex, middleIndex)
+        }
+
+        // Strategy 2: Check if AI can win
+        smallGrid.cells.forEachIndexed { index, player ->
+            if (player == Player.None) {
+                // Make a temporary move
+                smallGrid.cells[index] = Player.O
+                val canWin = checkWin(smallGrid, Player.O)
+                // Undo the temporary move
+                smallGrid.cells[index] = Player.None
+
+                if (canWin) {
+                    return Pair(activeIndex, index)
+                }
+            }
+        }
+
+        // Strategy 3: Random move
+        val availableMoves = smallGrid.cells
+            .mapIndexedNotNull { index, player ->
+                if (player == Player.None) Pair(activeIndex, index) else null
+            }
+
+        return availableMoves.randomOrNull()
     }
 
 
@@ -200,11 +236,12 @@ class TicTacToeViewModel : ViewModel() {
           _currentPlayer.value = if (_currentPlayer.value == Player.X) Player.O else Player.X
       }
 
-      fun isAIEnabled(): Boolean {
-          return _gameMode.value == GameMode.EasyAI
-      }
+    fun isAIEnabled(): Boolean {
+        return _gameMode.value in listOf(GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI, GameMode.ImpossibleAI)
+    }
 
-      private fun isValidMove(grid: BigGrid, gridIndex: Int, cellIndex: Int): Boolean {
+
+    private fun isValidMove(grid: BigGrid, gridIndex: Int, cellIndex: Int): Boolean {
           return grid.smallGrids[gridIndex].winner == null && !isDraw(grid.smallGrids[gridIndex]) && grid.smallGrids[gridIndex].cells[cellIndex] == Player.None
       }
 

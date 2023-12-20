@@ -1,6 +1,5 @@
 package com.nobosoftware.nestedx.android.views
 
-import MainMenu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -23,9 +22,12 @@ fun UltimateTicTacToeApp() {
         GameMode.HumanVsHuman -> UltimateTicTacToeGame(viewModel) {
             viewModel.setGameMode(GameMode.None) // Navigate back to the main menu
         }
+
         GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI, GameMode.ImpossibleAI -> UltimateTicTacToeGameWithAI(
             viewModel = viewModel
-        ) { viewModel.setGameMode(GameMode.None) }
+        ) {
+            viewModel.setGameMode(GameMode.None)
+        }
     }
 }
 
