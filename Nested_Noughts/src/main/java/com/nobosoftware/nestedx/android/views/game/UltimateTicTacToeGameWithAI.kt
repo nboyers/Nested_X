@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,14 +28,19 @@ import com.nobosoftware.nestedx.android.models.BigGrid
 import com.nobosoftware.nestedx.android.models.GridState
 import com.nobosoftware.nestedx.android.models.Player
 import com.nobosoftware.nestedx.android.views.monetization.BannerAd
+import kotlinx.coroutines.launch
+
 
 @Composable
-fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: () -> Unit) {
+fun UltimateTicTacToeGameWithAI(
+    viewModel: TicTacToeViewModel,
+    onNavigateToMainMenu: () -> Unit
+) {
     val bigGrid by viewModel.bigGrid.observeAsState(initial = BigGrid())
     val currentPlayer by viewModel.currentPlayer.observeAsState(initial = Player.X)
     val activeGridIndex by viewModel.activeGridIndex.observeAsState()
     val gameOverMessage by viewModel.gameOverMessage.observeAsState()
-
+    val coroutineScope = rememberCoroutineScope()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -55,7 +61,7 @@ fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: (
         // LargeGridComposable
         activeGridIndex?.let {
             LargeGridComposable(
-                bigGrid = bigGrid, // Pass bigGrid as a parameter here
+                bigGrid = bigGrid,
                 activeGridIndex = it,
                 modifier = Modifier
                     .padding(16.dp)
@@ -65,7 +71,7 @@ fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: (
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // SmallGridComposable - Now includes win/draw/lose state
+        // SmallGridComposable
         val smallGrid = bigGrid.smallGrids[activeGridIndex ?: 0]
         SmallGridComposable(
             smallGrid = smallGrid,
@@ -76,6 +82,12 @@ fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: (
             },
             onCellClicked = { cellIndex ->
                 viewModel.makePlayerMove(activeGridIndex ?: 0, cellIndex)
+                coroutineScope.launch {
+                    if (viewModel.currentPlayer.value == Player.O && viewModel.isAIEnabled()) {
+                        // Trigger AI move within the ViewModel
+                        viewModel.makeAIMove()
+                    }
+                }
             },
             modifier = Modifier
                 .weight(1f)
@@ -99,6 +111,7 @@ fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: (
         }
     }
 
+    // Game Over Dialog
     if (gameOverMessage != null) {
         AlertDialog(
             onDismissRequest = {
@@ -117,5 +130,4 @@ fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: (
             }
         )
     }
-
 }

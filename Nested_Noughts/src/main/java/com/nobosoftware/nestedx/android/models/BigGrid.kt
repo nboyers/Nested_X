@@ -1,7 +1,7 @@
 package com.nobosoftware.nestedx.android.models
 
 data class BigGrid(
-    val smallGrids: Array<SmallGrid> = Array(9) { SmallGrid() }
+    val smallGrids: Array<SmallGrid> = Array(9) { index -> SmallGrid(index = index) }
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

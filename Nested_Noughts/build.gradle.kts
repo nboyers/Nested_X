@@ -51,5 +51,6 @@ dependencies {
     implementation(libs.androidx.activity.compose)
     implementation(libs.play.services.mlkit.text.recognition.common)
     debugImplementation(libs.compose.ui.tooling)
-
+    implementation(libs.play.services.ads.v2260)
+    implementation(libs.kotlinx.coroutines.android)
 }

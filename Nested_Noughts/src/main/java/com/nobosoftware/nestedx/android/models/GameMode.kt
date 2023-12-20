@@ -6,5 +6,6 @@ enum class GameMode {
     EasyAI,
     MediumAI,
     HardAI,
-    ImpossibleAI
+    ImpossibleAI,
+
 }
