@@ -1,0 +1,648 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FF3E8DAB2B38CCFA003E71D7 /* iOS_Nested_XApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E8DAA2B38CCFA003E71D7 /* iOS_Nested_XApp.swift */; };
+		FF3E8DAD2B38CCFA003E71D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E8DAC2B38CCFA003E71D7 /* ContentView.swift */; };
+		FF3E8DAF2B38CCFD003E71D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF3E8DAE2B38CCFD003E71D7 /* Assets.xcassets */; };
+		FF3E8DB32B38CCFD003E71D7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF3E8DB22B38CCFD003E71D7 /* Preview Assets.xcassets */; };
+		FF3E8DBD2B38CCFD003E71D7 /* iOS_Nested_XTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E8DBC2B38CCFD003E71D7 /* iOS_Nested_XTests.swift */; };
+		FF3E8DC72B38CCFD003E71D7 /* iOS_Nested_XUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E8DC62B38CCFD003E71D7 /* iOS_Nested_XUITests.swift */; };
+		FF3E8DC92B38CCFD003E71D7 /* iOS_Nested_XUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3E8DC82B38CCFD003E71D7 /* iOS_Nested_XUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF3E8DB92B38CCFD003E71D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF3E8D9F2B38CCFA003E71D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF3E8DA62B38CCFA003E71D7;
+			remoteInfo = iOS_Nested_X;
+		};
+		FF3E8DC32B38CCFD003E71D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FF3E8D9F2B38CCFA003E71D7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF3E8DA62B38CCFA003E71D7;
+			remoteInfo = iOS_Nested_X;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FF3E8DA72B38CCFA003E71D7 /* iOS_Nested_X.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOS_Nested_X.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3E8DAA2B38CCFA003E71D7 /* iOS_Nested_XApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Nested_XApp.swift; sourceTree = "<group>"; };
+		FF3E8DAC2B38CCFA003E71D7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		FF3E8DAE2B38CCFD003E71D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF3E8DB02B38CCFD003E71D7 /* iOS_Nested_X.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iOS_Nested_X.entitlements; sourceTree = "<group>"; };
+		FF3E8DB22B38CCFD003E71D7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FF3E8DB82B38CCFD003E71D7 /* iOS_Nested_XTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_Nested_XTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3E8DBC2B38CCFD003E71D7 /* iOS_Nested_XTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Nested_XTests.swift; sourceTree = "<group>"; };
+		FF3E8DC22B38CCFD003E71D7 /* iOS_Nested_XUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iOS_Nested_XUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF3E8DC62B38CCFD003E71D7 /* iOS_Nested_XUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Nested_XUITests.swift; sourceTree = "<group>"; };
+		FF3E8DC82B38CCFD003E71D7 /* iOS_Nested_XUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_Nested_XUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FF3E8DA42B38CCFA003E71D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8DB52B38CCFD003E71D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8DBF2B38CCFD003E71D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FF3E8D9E2B38CCFA003E71D7 = {
+			isa = PBXGroup;
+			children = (
+				FF3E8DA92B38CCFA003E71D7 /* iOS_Nested_X */,
+				FF3E8DBB2B38CCFD003E71D7 /* iOS_Nested_XTests */,
+				FF3E8DC52B38CCFD003E71D7 /* iOS_Nested_XUITests */,
+				FF3E8DA82B38CCFA003E71D7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FF3E8DA82B38CCFA003E71D7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FF3E8DA72B38CCFA003E71D7 /* iOS_Nested_X.app */,
+				FF3E8DB82B38CCFD003E71D7 /* iOS_Nested_XTests.xctest */,
+				FF3E8DC22B38CCFD003E71D7 /* iOS_Nested_XUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FF3E8DA92B38CCFA003E71D7 /* iOS_Nested_X */ = {
+			isa = PBXGroup;
+			children = (
+				FF3E8DAA2B38CCFA003E71D7 /* iOS_Nested_XApp.swift */,
+				FF3E8DAC2B38CCFA003E71D7 /* ContentView.swift */,
+				FF3E8DAE2B38CCFD003E71D7 /* Assets.xcassets */,
+				FF3E8DB02B38CCFD003E71D7 /* iOS_Nested_X.entitlements */,
+				FF3E8DB12B38CCFD003E71D7 /* Preview Content */,
+			);
+			path = iOS_Nested_X;
+			sourceTree = "<group>";
+		};
+		FF3E8DB12B38CCFD003E71D7 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				FF3E8DB22B38CCFD003E71D7 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		FF3E8DBB2B38CCFD003E71D7 /* iOS_Nested_XTests */ = {
+			isa = PBXGroup;
+			children = (
+				FF3E8DBC2B38CCFD003E71D7 /* iOS_Nested_XTests.swift */,
+			);
+			path = iOS_Nested_XTests;
+			sourceTree = "<group>";
+		};
+		FF3E8DC52B38CCFD003E71D7 /* iOS_Nested_XUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FF3E8DC62B38CCFD003E71D7 /* iOS_Nested_XUITests.swift */,
+				FF3E8DC82B38CCFD003E71D7 /* iOS_Nested_XUITestsLaunchTests.swift */,
+			);
+			path = iOS_Nested_XUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FF3E8DA62B38CCFA003E71D7 /* iOS_Nested_X */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF3E8DCC2B38CCFD003E71D7 /* Build configuration list for PBXNativeTarget "iOS_Nested_X" */;
+			buildPhases = (
+				FF3E8DD62B38CF8B003E71D7 /* ShellScript */,
+				FF3E8DA32B38CCFA003E71D7 /* Sources */,
+				FF3E8DA42B38CCFA003E71D7 /* Frameworks */,
+				FF3E8DA52B38CCFA003E71D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iOS_Nested_X;
+			productName = iOS_Nested_X;
+			productReference = FF3E8DA72B38CCFA003E71D7 /* iOS_Nested_X.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FF3E8DB72B38CCFD003E71D7 /* iOS_Nested_XTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF3E8DCF2B38CCFD003E71D7 /* Build configuration list for PBXNativeTarget "iOS_Nested_XTests" */;
+			buildPhases = (
+				FF3E8DB42B38CCFD003E71D7 /* Sources */,
+				FF3E8DB52B38CCFD003E71D7 /* Frameworks */,
+				FF3E8DB62B38CCFD003E71D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF3E8DBA2B38CCFD003E71D7 /* PBXTargetDependency */,
+			);
+			name = iOS_Nested_XTests;
+			productName = iOS_Nested_XTests;
+			productReference = FF3E8DB82B38CCFD003E71D7 /* iOS_Nested_XTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FF3E8DC12B38CCFD003E71D7 /* iOS_Nested_XUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FF3E8DD22B38CCFD003E71D7 /* Build configuration list for PBXNativeTarget "iOS_Nested_XUITests" */;
+			buildPhases = (
+				FF3E8DBE2B38CCFD003E71D7 /* Sources */,
+				FF3E8DBF2B38CCFD003E71D7 /* Frameworks */,
+				FF3E8DC02B38CCFD003E71D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FF3E8DC42B38CCFD003E71D7 /* PBXTargetDependency */,
+			);
+			name = iOS_Nested_XUITests;
+			productName = iOS_Nested_XUITests;
+			productReference = FF3E8DC22B38CCFD003E71D7 /* iOS_Nested_XUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FF3E8D9F2B38CCFA003E71D7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1510;
+				LastUpgradeCheck = 1510;
+				TargetAttributes = {
+					FF3E8DA62B38CCFA003E71D7 = {
+						CreatedOnToolsVersion = 15.1;
+					};
+					FF3E8DB72B38CCFD003E71D7 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = FF3E8DA62B38CCFA003E71D7;
+					};
+					FF3E8DC12B38CCFD003E71D7 = {
+						CreatedOnToolsVersion = 15.1;
+						TestTargetID = FF3E8DA62B38CCFA003E71D7;
+					};
+				};
+			};
+			buildConfigurationList = FF3E8DA22B38CCFA003E71D7 /* Build configuration list for PBXProject "iOS_Nested_X" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FF3E8D9E2B38CCFA003E71D7;
+			productRefGroup = FF3E8DA82B38CCFA003E71D7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FF3E8DA62B38CCFA003E71D7 /* iOS_Nested_X */,
+				FF3E8DB72B38CCFD003E71D7 /* iOS_Nested_XTests */,
+				FF3E8DC12B38CCFD003E71D7 /* iOS_Nested_XUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FF3E8DA52B38CCFA003E71D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3E8DB32B38CCFD003E71D7 /* Preview Assets.xcassets in Resources */,
+				FF3E8DAF2B38CCFD003E71D7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8DB62B38CCFD003E71D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8DC02B38CCFD003E71D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FF3E8DD62B38CF8B003E71D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FF3E8DA32B38CCFA003E71D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3E8DAD2B38CCFA003E71D7 /* ContentView.swift in Sources */,
+				FF3E8DAB2B38CCFA003E71D7 /* iOS_Nested_XApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8DB42B38CCFD003E71D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3E8DBD2B38CCFD003E71D7 /* iOS_Nested_XTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FF3E8DBE2B38CCFD003E71D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF3E8DC92B38CCFD003E71D7 /* iOS_Nested_XUITestsLaunchTests.swift in Sources */,
+				FF3E8DC72B38CCFD003E71D7 /* iOS_Nested_XUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FF3E8DBA2B38CCFD003E71D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF3E8DA62B38CCFA003E71D7 /* iOS_Nested_X */;
+			targetProxy = FF3E8DB92B38CCFD003E71D7 /* PBXContainerItemProxy */;
+		};
+		FF3E8DC42B38CCFD003E71D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FF3E8DA62B38CCFA003E71D7 /* iOS_Nested_X */;
+			targetProxy = FF3E8DC32B38CCFD003E71D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FF3E8DCA2B38CCFD003E71D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FF3E8DCB2B38CCFD003E71D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		FF3E8DCD2B38CCFD003E71D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS_Nested_X/iOS_Nested_X.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iOS_Nested_X/Preview Content\"";
+				DEVELOPMENT_TEAM = JCL982F3T2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "\"$(inherited) -framework shared\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nobosoftware.iOS-Nested-X";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FF3E8DCE2B38CCFD003E71D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = iOS_Nested_X/iOS_Nested_X.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"iOS_Nested_X/Preview Content\"";
+				DEVELOPMENT_TEAM = JCL982F3T2;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)";
+				GENERATE_INFOPLIST_FILE = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "\"$(inherited) -framework shared\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nobosoftware.iOS-Nested-X";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FF3E8DD02B38CCFD003E71D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JCL982F3T2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nobosoftware.iOS-Nested-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS_Nested_X.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS_Nested_X";
+			};
+			name = Debug;
+		};
+		FF3E8DD12B38CCFD003E71D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JCL982F3T2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nobosoftware.iOS-Nested-XTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iOS_Nested_X.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/iOS_Nested_X";
+			};
+			name = Release;
+		};
+		FF3E8DD32B38CCFD003E71D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JCL982F3T2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nobosoftware.iOS-Nested-XUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iOS_Nested_X;
+			};
+			name = Debug;
+		};
+		FF3E8DD42B38CCFD003E71D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = JCL982F3T2;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nobosoftware.iOS-Nested-XUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = iOS_Nested_X;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FF3E8DA22B38CCFA003E71D7 /* Build configuration list for PBXProject "iOS_Nested_X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3E8DCA2B38CCFD003E71D7 /* Debug */,
+				FF3E8DCB2B38CCFD003E71D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF3E8DCC2B38CCFD003E71D7 /* Build configuration list for PBXNativeTarget "iOS_Nested_X" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3E8DCD2B38CCFD003E71D7 /* Debug */,
+				FF3E8DCE2B38CCFD003E71D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF3E8DCF2B38CCFD003E71D7 /* Build configuration list for PBXNativeTarget "iOS_Nested_XTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3E8DD02B38CCFD003E71D7 /* Debug */,
+				FF3E8DD12B38CCFD003E71D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FF3E8DD22B38CCFD003E71D7 /* Build configuration list for PBXNativeTarget "iOS_Nested_XUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FF3E8DD32B38CCFD003E71D7 /* Debug */,
+				FF3E8DD42B38CCFD003E71D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FF3E8D9F2B38CCFA003E71D7 /* Project object */;
+}
