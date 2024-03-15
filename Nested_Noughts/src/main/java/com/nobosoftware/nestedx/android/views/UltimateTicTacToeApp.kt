@@ -23,7 +23,7 @@ fun UltimateTicTacToeApp() {
             viewModel.setGameMode(GameMode.None) // Navigate back to the main menu
         }
 
-        GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI, GameMode.ImpossibleAI -> UltimateTicTacToeGameWithAI(
+        GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI -> UltimateTicTacToeGameWithAI(
             viewModel = viewModel
         ) {
             viewModel.setGameMode(GameMode.None)

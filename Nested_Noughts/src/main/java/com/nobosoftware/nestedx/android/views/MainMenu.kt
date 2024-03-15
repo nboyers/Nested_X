@@ -134,12 +134,12 @@ fun ComputerDifficultyDialog(
                 ) {
                     Text("Hard")
                 }
-                Button(
-                    onClick = { onDifficultySelected(GameMode.ImpossibleAI) },
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    Text("Impossible")
-                }
+//                Button(
+//                    onClick = { onDifficultySelected(GameMode.ImpossibleAI) },
+//                    modifier = Modifier.fillMaxWidth(),
+//                ) {
+//                    Text("Impossible")
+//                }
             }
         }
     )

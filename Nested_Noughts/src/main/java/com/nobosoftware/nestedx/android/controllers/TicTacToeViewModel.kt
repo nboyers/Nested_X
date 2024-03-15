@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
   /**
    * ViewModel for managing the game state and logic of a Nested Tic-Tac-Toe game.
    */
-  @Suppress("KDocUnresolvedReference")
   class TicTacToeViewModel : ViewModel() {
 
       /**
@@ -120,7 +119,6 @@ import kotlinx.coroutines.launch
             GameMode.EasyAI       -> calculateEasyAiMove(grid, activeIndex)
             GameMode.MediumAI     -> calculateMediumAiMove(grid, activeIndex)
             GameMode.HardAI       -> calculateHardAiMove(grid, activeIndex)
-            GameMode.ImpossibleAI -> calculateImpossibleAiMove(grid, activeIndex)
             else -> return // If it's not an AI mode, return without making a move
         }
 
@@ -379,20 +377,7 @@ import kotlinx.coroutines.launch
         }.randomOrNull()
     }
 
-      /**
-       * Calculates the optimal move for the AI using the Minimax algorithm, at an impossible difficulty level.
-       *
-       * @param grid The current state of the big grid.
-       * @param activeIndex The index of the active small grid within the big grid.
-       * @param isMaximizing A boolean flag indicating if the current recursion level is maximizing or minimizing.
-       * @param depth The current depth in the recursion.
-       * @param alpha The current alpha value for alpha-beta pruning.
-       * @param beta The current beta value for alpha-beta pruning.
-       * @return A Pair of Float and Pair<Int, Int>, where the Float is the score and Pair<Int, Int> is the move.
-       */
-    private fun calculateImpossibleAiMove(grid: BigGrid, activeIndex: Int): Pair<Int, Int>? {
-        return minimax(grid, activeIndex, true, 0, -Float.MAX_VALUE, Float.MAX_VALUE).second
-    }
+
 
       /**
        * Identifies a move that sets up future wins.
@@ -531,58 +516,6 @@ import kotlinx.coroutines.launch
     }
 
       /**
-       * Minimax algorithm implementation for calculating the best move.
-       *
-       * @param grid The current state of the big grid.
-       * @param activeIndex The index of the active small grid within the big grid.
-       * @param isMaximizing Indicates if the current move is maximizing or minimizing.
-       * @param depth Current depth in the game tree.
-       * @param alpha Alpha value for alpha-beta pruning.
-       * @param beta Beta value for alpha-beta pruning.
-       * @return A Pair of Float and Pair<Int, Int> indicating the score and the best move.
-       */
-    private fun minimax(grid: BigGrid, activeIndex: Int, isMaximizing: Boolean, depth: Int, alpha: Float, beta: Float): Pair<Float, Pair<Int, Int>?> {
-        if (depth == 5 || isGameOver(grid)) {
-            return Pair(evaluateBoard(grid), null)
-        }
-
-        var bestMove: Pair<Int, Int>? = null
-        var bestScore = if (isMaximizing) -Float.MAX_VALUE else Float.MAX_VALUE
-        var currentAlpha = alpha
-        var currentBeta = beta
-
-        for (index in grid.smallGrids[activeIndex].cells.indices) {
-            if (grid.smallGrids[activeIndex].cells[index] == Player.None) {
-                grid.smallGrids[activeIndex].cells[index] = if (isMaximizing) Player.O else Player.X
-                val score = minimax(grid, index, !isMaximizing, depth + 1, currentAlpha, currentBeta).first
-
-                if (isMaximizing) {
-                    if (score > bestScore) {
-                        bestScore = score
-                        bestMove = Pair(activeIndex, index)
-                    }
-                    currentAlpha = maxOf(currentAlpha, score)
-                } else {
-                    if (score < bestScore) {
-                        bestScore = score
-                        bestMove = Pair(activeIndex, index)
-                    }
-                    currentBeta = minOf(currentBeta, score)
-                }
-
-                grid.smallGrids[activeIndex].cells[index] = Player.None
-
-                if (currentBeta <= currentAlpha) {
-                    break
-                }
-            }
-        }
-
-        return Pair(bestScore, bestMove)
-    }
-
-
-      /**
        * Switches the current player from X to O or O to X.
        */
       private fun switchPlayer() {
@@ -595,7 +528,7 @@ import kotlinx.coroutines.launch
        * @return True if the AI is enabled, false otherwise.
        */
     fun isAIEnabled(): Boolean {
-        return _gameMode.value in listOf(GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI, GameMode.ImpossibleAI)
+        return _gameMode.value in listOf(GameMode.EasyAI, GameMode.MediumAI, GameMode.HardAI)
     }
 
       /**
@@ -638,63 +571,6 @@ import kotlinx.coroutines.launch
                 it
             }
         }
-    }
-
-      /**
-       * Evaluates the score of the board for the Minimax algorithm.
-       *
-       * @param grid The current state of the big grid.
-       * @return The evaluated score of the board.
-       */
-    private fun evaluateBoard(grid: BigGrid): Float {
-        var score = 0.0f
-
-        // Evaluate each small grid
-        for ((index, smallGrid) in grid.smallGrids.withIndex()) {
-            when (smallGrid.winner) {
-                Player.O -> score += 10.0f
-                Player.X -> score -= 10.0f
-                else -> score += evaluatePotentialWins(smallGrid, Player.O) - evaluatePotentialWins(smallGrid, Player.X)
-            }
-
-            // Additional scoring based on the strategic value of the grid index
-            if (index == 4 || index % 2 == 0) { // Center and corners
-                score += (if (smallGrid.winner == Player.O) 1.5f else if (smallGrid.winner == Player.X) -1.5f else 0.0f)
-            }
-        }
-
-        return score
-    }
-
-      /**
-       * Evaluates potential wins for a player in a small grid.
-       *
-       * @param smallGrid The current state of a small grid.
-       * @param player The player for whom to evaluate potential wins.
-       * @return The score based on the number of potential winning combinations.
-       */
-    private fun evaluatePotentialWins(smallGrid: SmallGrid, player: Player): Float {
-        var score = 0.0f
-
-        // Scoring based on the number of potential winning combinations
-        val winPaths = listOf(
-            listOf(0, 1, 2), listOf(3, 4, 5), listOf(6, 7, 8), // Rows
-            listOf(0, 3, 6), listOf(1, 4, 7), listOf(2, 5, 8), // Columns
-            listOf(0, 4, 8), listOf(2, 4, 6)                   // Diagonals
-        )
-
-        for (path in winPaths) {
-            val playerCount = path.count { smallGrid.cells[it] == player }
-            val emptyCount = path.count { smallGrid.cells[it] == Player.None }
-
-            if (playerCount == 2 && emptyCount == 1) {
-                score += 5.0f
-            } else if (playerCount == 1 && emptyCount == 2) {
-                score += 2.0f
-            }
-        }
-
-        return score
     }
 
       /**
@@ -747,17 +623,6 @@ import kotlinx.coroutines.launch
        */
     private fun isDraw(smallGrid: SmallGrid): Boolean {
         return smallGrid.cells.none { it == Player.None } && smallGrid.winner == null
-    }
-
-      /**
-       * Checks if the game is over (either won or drawn).
-       *
-       * @param grid The current state of the big grid.
-       * @return True if the game is over, false otherwise.
-       */
-    private fun isGameOver(grid: BigGrid): Boolean {
-        // Check if any player has won the game
-        return gameWon(grid) || isDraw(grid)
     }
 
       /**
