@@ -27,8 +27,10 @@ fun SmallGridComposable(
     smallGrid: SmallGrid,
     gridState: GridState,
     onCellClicked: (Int) -> Unit,
+    isEnabled: Boolean,
     modifier: Modifier
-) {
+){
+
     val textStyle = MaterialTheme.typography.titleMedium.copy(fontSize = 36.sp)
     val backgroundColor = when (gridState) {
         GridState.WIN -> MaterialTheme.colorScheme.primaryContainer // Background color for a winning grid
@@ -55,7 +57,7 @@ fun SmallGridComposable(
                                 .weight(1f)
                                 .fillMaxHeight()
                                 .border(1.dp, MaterialTheme.colorScheme.onSurface)
-                                .clickable(enabled = gridState == GridState.ACTIVE) { onCellClicked(cellIndex) }
+                                .clickable(enabled = gridState == GridState.ACTIVE && isEnabled) { onCellClicked(cellIndex) } // Use isInputEnabled here
                         ) {
                             Text(
                                 text = if (player != Player.None) player.toString() else "",
@@ -70,4 +72,3 @@ fun SmallGridComposable(
         }
     }
 }
-

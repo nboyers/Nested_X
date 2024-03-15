@@ -77,6 +77,7 @@ fun UltimateTicTacToeGame(viewModel: TicTacToeViewModel, onNavigateToMainMenu: (
             onCellClicked = { cellIndex ->
                 viewModel.makePlayerMove(activeGridIndex ?: 0, cellIndex)
             },
+            isEnabled = true,
             modifier = Modifier
                 .weight(1f)
                 .padding(16.dp)

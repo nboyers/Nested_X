@@ -9,7 +9,8 @@
         android:theme="@style/AppTheme"
         android:label="Nested X"
         android:dataExtractionRules="@xml/data_extraction_rules"
-        tools:ignore="DataExtractionRules,UnusedAttribute">
+        tools:ignore="DataExtractionRules,UnusedAttribute"
+        android:icon="@drawable/offline_dialog_background">
 
         <activity
             android:name=".MainActivity"

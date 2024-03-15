@@ -41,6 +41,10 @@ fun UltimateTicTacToeGameWithAI(
     val activeGridIndex by viewModel.activeGridIndex.observeAsState()
     val gameOverMessage by viewModel.gameOverMessage.observeAsState()
     val coroutineScope = rememberCoroutineScope()
+
+    // Disable input if it's the AI's turn
+    val isInputEnabled = !(viewModel.isAIEnabled() && currentPlayer == Player.O)
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -89,10 +93,13 @@ fun UltimateTicTacToeGameWithAI(
                     }
                 }
             },
+            isEnabled = isInputEnabled, // Pass the isInputEnabled variable as the isEnabled parameter
             modifier = Modifier
                 .weight(1f)
                 .padding(16.dp)
         )
+
+
         BannerAd(modifier = Modifier.fillMaxWidth())
         // Player's turn text
         Box(
