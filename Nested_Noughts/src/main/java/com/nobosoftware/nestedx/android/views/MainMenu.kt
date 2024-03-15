@@ -10,10 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -46,7 +44,7 @@ fun MainMenu(onGameModeSelected: (GameMode) -> Unit) {
             modifier = Modifier.align(Alignment.Center)
         ) {
             Text(
-                text = "NESTED NOUGHTS",
+                text = "NESTED X",
                 color = Color.White,
                 fontSize = 24.sp,
                 modifier = Modifier.padding(bottom = 16.dp)
@@ -76,15 +74,16 @@ fun MainMenu(onGameModeSelected: (GameMode) -> Unit) {
 
             // Show difficulty dialog when the button is clicked
             if (showDifficultyDialog) {
-//                ComputerDifficultyDialog(
-//                    onDifficultySelected = {
-//                        // Pass the selected difficulty to the game mode selection callback
-//                        onGameModeSelected(GameMode.Computer(it))
-//                        showDifficultyDialog = false
-//                    },
-//                    onDismiss = { showDifficultyDialog = false }
-//                )
+                ComputerDifficultyDialog(
+                    onDifficultySelected = { selectedGameMode ->
+                        // Pass the selected difficulty directly to the game mode selection callback
+                        onGameModeSelected(selectedGameMode)
+                        showDifficultyDialog = false
+                    },
+                    onDismiss = { showDifficultyDialog = false }
+                )
             }
+
         }
 
         Text(
@@ -139,12 +138,14 @@ fun ComputerDifficultyDialog(
                     onClick = { onDifficultySelected(GameMode.ImpossibleAI) },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Text("Harder")
+                    Text("Impossible")
                 }
             }
         }
     )
 }
+
+
 
 @Composable
 fun AlertDialog(
